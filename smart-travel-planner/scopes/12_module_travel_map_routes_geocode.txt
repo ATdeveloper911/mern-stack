@@ -1,0 +1,60 @@
+MODULE 12 — Travel Map (Map + Markers + Routes + Geocoding)
+
+1) Module goal
+- Display destinations/hotels/restaurants on a map.
+- Provide routing between points.
+- Provide geocoding (address -> coordinates).
+
+2) Frontend implementation
+- File: frontend/src/pages/TravelMap.js
+Key behaviors
+- On mount:
+  - GET /travel-map/data
+  - Requests user geolocation (browser)
+- Filters out entries without coordinates.
+- Map UI features:
+  - Leaflet map layers
+  - Custom markers
+  - Search + place markers
+  - Route building UI (origin/destination)
+  - Polyline decoding for Google route polyline
+
+3) Backend implementation
+Routes (auth protected)
+- File: backend/src/routes/travelMapRoutes.js
+  - GET /api/travel-map/data
+  - GET /api/travel-map/route
+  - GET /api/travel-map/geocode
+
+Controller
+- File: backend/src/controllers/travelMapController.js
+- /data:
+  - Returns:
+    - destinations (popular or by destinationId)
+    - hotels/restaurants with coordinates
+    - mapsApiKey: GOOGLE_MAPS_API_KEY || null
+- /route:
+  - If GOOGLE_MAPS_API_KEY is set:
+    - calls Google Directions API and returns distance/duration/steps/polyline
+  - Else fallback response with message
+- /geocode:
+  - If GOOGLE_MAPS_API_KEY is set:
+    - calls Google Geocoding API
+  - Else 503
+
+4) Database usage
+- Destination, Hotel, Restaurant collections
+
+5) External APIs
+- Google Directions API (GOOGLE_MAPS_API_KEY)
+- Google Geocoding API (GOOGLE_MAPS_API_KEY)
+
+6) Known gaps / issues
+- Some advanced UI toggles (traffic/transit/places) depend on additional APIs not fully implemented on backend.
+
+7) How to test
+- Login
+- Open /travel-map
+- Confirm markers load
+- Test route:
+  - /api/travel-map/route?origin=...&destination=...

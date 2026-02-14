@@ -1,0 +1,94 @@
+MODULE 08 — Travel Hub (Destinations + Details + Weather + Places to Visit)
+
+1) Module goal
+- Show a searchable, filterable list of destinations (Pakistan-focused).
+- Show destination detail view with:
+  - description, media, category, best season
+  - real-time weather
+  - AI-generated itinerary (via Buddy Bot)
+  - “Add to Bucket List” (via Travel Fund)
+  - “Places to Visit” near destination coordinates
+
+2) Frontend implementation
+- File: frontend/src/pages/TravelHub.js
+Core flows
+A) Destinations list
+- On load or categoryFilter change:
+  - If categoryFilter !== 'all':
+    - GET /travel-hub/category/:category
+  - Else:
+    - GET /travel-hub
+- Local search filters the fetched array.
+
+B) Destination details
+- When user selects a destination or opens URL with ?id=
+  - GET /travel-hub/:id
+  - Weather:
+    - GET /travel-hub/weather?destination=<destination.name>
+  - Hotels/Restaurants for destination:
+    - Currently calls:
+      - api.get(`/places-to-stay?destination=${destId}`)  (this endpoint does NOT exist)
+      - api.get(`/places-to-stay/restaurants?destination=${destId}`)
+    - Correct hotels endpoint in backend is:
+      - /places-to-stay/hotels?destination=<id>
+  - Places to visit:
+    - GET /travel-hub/places-to-visit?lat&lng&radius&limit
+
+C) Add to bucket list
+- POST /travel-fund
+  - sends isBucketList=true with 0-budget breakdown
+
+D) AI itinerary
+- POST /buddy-bot/message
+  - asks for a 3-day itinerary for the selected destination
+
+3) Backend implementation
+Routes (auth protected)
+- File: backend/src/routes/travelHubRoutes.js
+  - GET /api/travel-hub
+  - GET /api/travel-hub/category/:category
+  - GET /api/travel-hub/weather
+  - GET /api/travel-hub/places-to-visit
+  - GET /api/travel-hub/:id
+  - POST /api/travel-hub
+
+Controller
+- File: backend/src/controllers/travelHubController.js
+Key behaviors
+- getAllDestinations:
+  - filters country =~ /Pakistan/i
+  - supports query params: search, popular, seasonal, category
+  - sorts popular first
+- getDestinationById:
+  - attaches real-time weather if coordinates exist
+- getWeather:
+  - uses OpenWeatherMap:
+    - Geocoding API (if not found in DB)
+    - Current weather + forecast
+  - Requires WEATHER_API_KEY
+- getPlacesToVisit:
+  - Intended to use OpenTripMap (key likely needed). The frontend assumes this exists.
+
+4) Database usage
+- Destination model is central.
+- Hotels/Restaurants are linked by destination ObjectId.
+- Bucket list uses Budget model with isBucketList=true.
+
+5) External APIs
+- OpenWeatherMap (WEATHER_API_KEY)
+- OpenTripMap (if enabled in controller; key may be needed)
+- Gemini via Buddy Bot itinerary prompt (AI_API_KEY)
+
+6) Known gaps / issues
+- Frontend calls a non-existing hotels endpoint:
+  - /places-to-stay?destination=... should be /places-to-stay/hotels?destination=...
+- Places-to-visit depends on correct backend implementation + API key.
+
+7) How to test
+- Login
+- Open /travel-hub
+- Select destination
+- Verify:
+  - weather loads (WEATHER_API_KEY set)
+  - add-to-bucket-list creates entry
+  - AI itinerary returns response (AI_API_KEY set)

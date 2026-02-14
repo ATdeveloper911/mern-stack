@@ -1,0 +1,324 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* Natural Rainbow Soft Colors Theme */
+  --soft-red: #FFB3BA;
+  --soft-orange: #FFDFBA;
+  --soft-yellow: #FFFFBA;
+  --soft-green: #BAFFC9;
+  --soft-blue: #BAE1FF;
+  --soft-indigo: #D4B3FF;
+  --soft-violet: #FFB3E6;
+  --soft-pink: #FFC0CB;
+  --soft-peach: #FFD9B3;
+  --soft-mint: #B3FFE6;
+  --soft-lavender: #E6B3FF;
+  --soft-sky: #B3E6FF;
+  --white: #FFFFFF;
+  --light-grey: #F5F5F5;
+  --text-dark: #2C3E50;
+  --text-medium: #5A6C7D;
+  
+  /* Legacy compatibility */
+  --seafoam-green: var(--soft-mint);
+  --ocean-blue: var(--soft-blue);
+  --earthy-brown: var(--text-dark);
+  --warm-coral: var(--soft-orange);
+  --frosty-grey: var(--light-grey);
+  --sunny-yellow: var(--soft-yellow);
+
+  /* Landing Page Brand Variables (used across auth + global UI) */
+  --lp-primary: #1a3c34;
+  --lp-accent: #d4a373;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--frosty-grey);
+  color: #333;
+
+  scrollbar-color: var(--lp-accent) rgba(26, 60, 52, 0.12);
+  scrollbar-width: thin;
+}
+
+/* Scrollbar styling (WebKit) */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(26, 60, 52, 0.08);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--lp-accent);
+  border-radius: 999px;
+  border: 2px solid rgba(26, 60, 52, 0.08);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(212, 163, 115, 0.9);
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* Professional Button Styles - Natural Rainbow Theme */
+.btn-primary {
+  background: linear-gradient(135deg, var(--lp-accent) 0%, rgba(212, 163, 115, 0.92) 100%);
+  color: #fff;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(212, 163, 115, 0.3);
+  letter-spacing: 0.3px;
+  height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 160px;
+}
+
+.btn-primary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(46, 204, 113, 0.35);
+  background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+}
+
+.btn-primary:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 4px 12px rgba(30, 136, 229, 0.25);
+}
+
+.btn-primary.full-width {
+  width: 100%;
+  min-width: auto;
+}
+
+.btn-secondary {
+  background: linear-gradient(135deg, var(--soft-green) 0%, var(--soft-mint) 100%);
+  color: var(--text-dark);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(186, 255, 201, 0.3);
+  letter-spacing: 0.3px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 140px;
+}
+
+.btn-secondary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(186, 255, 201, 0.4);
+  background: linear-gradient(135deg, var(--soft-mint) 0%, var(--soft-green) 100%);
+}
+
+.btn-success {
+  background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(39, 174, 96, 0.3);
+}
+
+.btn-success:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(39, 174, 96, 0.4);
+}
+
+.btn-danger {
+  background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(231, 76, 60, 0.3);
+}
+
+.btn-danger:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(231, 76, 60, 0.4);
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* Modern Input Styles */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="url"],
+input[type="tel"],
+select,
+textarea {
+  width: 100%;
+  height: 48px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  border: 1px solid #e0e0e0;
+  font-size: 15px;
+  font-weight: 400;
+  transition: all 0.3s ease;
+  background: #ffffff;
+  color: #333;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus,
+input[type="url"]:focus,
+input[type="tel"]:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: #1e88e5;
+  box-shadow: 0 0 0 3px rgba(30, 136, 229, 0.2);
+  background: #ffffff;
+}
+
+input[type="text"]::placeholder,
+input[type="email"]::placeholder,
+input[type="password"]::placeholder,
+input[type="number"]::placeholder,
+textarea::placeholder {
+  color: #999;
+  font-weight: 400;
+}
+
+textarea {
+  min-height: 100px;
+  resize: vertical;
+  padding: 14px 16px;
+}
+
+select {
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 40px;
+  appearance: none;
+}
+
+/* Modern Card Styles */
+.card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 28px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+}
+
+/* Travel Website Color Palette */
+:root {
+  --travel-primary: #1e88e5;
+  --travel-primary-dark: #1565c0;
+  --travel-accent: #2ecc71;
+  --travel-accent-alt: #ff7a59;
+  --travel-bg: #f9fafb;
+  --travel-text: #333333;
+  --travel-text-light: #666666;
+  --travel-border: #e0e0e0;
+}
+
+/* Dark Theme Support */
+[data-theme="dark"] {
+  --seafoam-green: #5A9A7A;
+  --ocean-blue: #1E5F8F;
+  --earthy-brown: #6B7550;
+  --warm-coral: #CC9A5F;
+  --frosty-grey: #2C2C2E;
+  --sunny-yellow: #B8A04F;
+  --ocean-blue-dark: #154A73;
+  --seafoam-green-light: #4A7A65;
+  --warm-coral-dark: #AA7A4F;
+  --earthy-brown-dark: #4F5A3A;
+}
+
+[data-theme="dark"] body {
+  background-color: #1C1C1E;
+  color: #E5E5EA;
+}
+
+[data-theme="dark"] .auth-box,
+[data-theme="dark"] .dashboard-header,
+[data-theme="dark"] .hub-header,
+[data-theme="dark"] .header,
+[data-theme="dark"] .budget-form,
+[data-theme="dark"] .result,
+[data-theme="dark"] .section,
+[data-theme="dark"] .popular-destinations,
+[data-theme="dark"] .contact-section,
+[data-theme="dark"] .analytics,
+[data-theme="dark"] .users-section,
+[data-theme="dark"] .chat-container {
+  background: rgba(28, 28, 30, 0.95);
+  color: #E5E5EA;
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .menu-card,
+[data-theme="dark"] .destination-item,
+[data-theme="dark"] .budget-card,
+[data-theme="dark"] .item-card {
+  background: rgba(44, 44, 46, 0.95);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] input,
+[data-theme="dark"] select {
+  background: #2C2C2E;
+  color: #E5E5EA;
+  border-color: #3A3A3C;
+}
+
+[data-theme="dark"] input:focus,
+[data-theme="dark"] select:focus {
+  border-color: var(--ocean-blue);
+  background: #3A3A3C;
+}

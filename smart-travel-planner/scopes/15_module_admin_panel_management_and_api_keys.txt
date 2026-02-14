@@ -1,0 +1,87 @@
+MODULE 15 — Admin Panel (Management + Analytics + API Keys + Auto-Fetch)
+
+1) Module goal
+- Provide admin-only management UI for:
+  - Users (enable/disable)
+  - Destinations CRUD
+  - Hotels CRUD
+  - Restaurants CRUD
+  - Budget rules CRUD
+  - Analytics dashboard
+  - API keys management (store keys in DB)
+  - Automated fetching scripts (hotels/locations)
+
+2) Frontend implementation
+- File: frontend/src/pages/AdminPanel.js
+Key behaviors
+- Guards:
+  - If user.role !== 'admin', redirects to /dashboard
+- Initial load:
+  - GET /admin/users
+  - GET /admin/analytics
+  - GET /admin/destinations
+  - GET /admin/hotels
+  - GET /admin/restaurants
+- Supports:
+  - Toggle user status: PATCH /admin/users/:id/toggle
+  - Create/update/delete destinations/hotels/restaurants via /admin/* endpoints
+  - Settings section for API keys:
+    - GET /admin/api-keys (with cache-buster)
+    - POST /admin/api-keys
+    - PUT /admin/api-keys/:id
+    - DELETE /admin/api-keys/:id
+  - Auto fetch:
+    - POST /admin/fetch-hotels-from-google
+    - POST /admin/auto-fetch-locations-hotels
+
+3) Backend implementation
+Routes (adminAuth protected)
+- File: backend/src/routes/adminRoutes.js
+Major endpoint groups
+- Users
+  - GET /api/admin/users
+  - PATCH /api/admin/users/:id/toggle
+- Destinations CRUD
+  - GET/POST/PUT/DELETE /api/admin/destinations...
+- Hotels CRUD
+  - GET/POST/PUT/DELETE /api/admin/hotels...
+- Restaurants CRUD
+  - GET/POST/PUT/DELETE /api/admin/restaurants...
+- Budget rules CRUD
+  - GET/POST/PUT/DELETE /api/admin/budget-rules...
+- Analytics
+  - GET /api/admin/analytics
+- API keys CRUD
+  - GET/POST/PUT/DELETE /api/admin/api-keys...
+- Auto-fetch
+  - POST /api/admin/fetch-hotels-from-google
+  - POST /api/admin/auto-fetch-locations-hotels
+
+Controller
+- File: backend/src/controllers/adminController.js
+- Performs direct CRUD on User/Destination/Hotel/Restaurant/BudgetRule/ApiKey
+- Analytics aggregates budgets and counts.
+
+4) Database usage
+- Models:
+  - User (admin can toggle isActive)
+  - Destination/Hotel/Restaurant
+  - BudgetRule
+  - Budget (for analytics)
+  - ApiKey (stores service keys)
+
+5) External APIs
+- Auto-fetch and some admin functions call external APIs (Google) depending on controller logic and stored keys.
+
+6) Known gaps / issues
+- API keys are stored in MongoDB but many controllers still primarily read process.env.* keys.
+  - A complete integration would load active ApiKey values into runtime env or query ApiKey collection per request.
+
+7) How to test
+- Create/login an admin user
+- Visit /admin
+- Verify:
+  - users list + toggle
+  - CRUD operations for content
+  - analytics loads
+  - API keys CRUD works

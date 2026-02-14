@@ -1,0 +1,53 @@
+MODULE 07 — Dashboard (Home + Quick Navigation)
+
+1) Module goal
+- Provide a post-login landing page that:
+  - Greets the user
+  - Shows popular destinations
+  - Provides shortcuts to all modules
+  - Shows a lightweight view of user budgets/trips
+
+2) Frontend implementation
+- File: frontend/src/pages/Dashboard.js
+Key behaviors
+- Fetches data on mount:
+  - GET /dashboard/popular-destinations
+  - GET /travel-fund (errors are ignored, fallback to empty list)
+- Computes:
+  - totalBudget = sum(b.total)
+  - pastTrips = budgets.length
+  - budgetSpent/budgetLimit are UI-derived (not from backend)
+- Navigation cards:
+  - /bucket-list, /travel-history, /travel-fund, /travel-hub, /places-to-stay, /money-map, /travel-map, /buddy-bot, /weather
+- Admin shortcut button:
+  - Shows “Admin Panel” if user.role === 'admin'
+
+3) Backend implementation
+Routes
+- File: backend/src/routes/dashboardRoutes.js (auth protected)
+  - GET /api/dashboard/popular-destinations
+  - GET /api/dashboard/search
+
+Controller
+- File: backend/src/controllers/dashboardController.js
+  - getPopularDestinations:
+    - Destination.find({ isPopular: true }).limit(6).select('name country city images coordinates')
+  - search:
+    - query param: query
+    - searches Destination name/city/country by regex
+
+4) Database usage
+- Model: backend/src/models/Destination.js
+- Dashboard reads Destination data (popular flag + core fields).
+
+5) Known gaps / issues
+- Dashboard/search endpoint exists but Dashboard page does not call /dashboard/search (it navigates to TravelHub with search query).
+- Budget stats are approximate UI-only values; there is no backend analytics endpoint for “budgetSpent/budgetLimit” on user dashboard.
+
+6) How to test
+- Login
+- Open /dashboard
+- Confirm:
+  - popular destinations load
+  - module cards navigate
+  - admin button appears for admin users

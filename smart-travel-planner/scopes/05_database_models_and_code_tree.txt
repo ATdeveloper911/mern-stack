@@ -1,0 +1,111 @@
+Database Models + Code Tree (MongoDB/Mongoose)
+
+1) Database
+- MongoDB database name: smart-travel-planner (default)
+- Connection string (recommended local): mongodb://127.0.0.1:27017/smart-travel-planner
+
+2) Mongoose models (backend/src/models)
+User
+- name, email (unique), contactNumber, password (hashed), role (user/admin), isActive, preferences (Map), createdAt
+
+Destination
+- name, country, city, description
+- history
+- famousLocations[]
+- coordinates { lat, lng }
+- images[]
+- isPopular, isSeasonal, bestSeason, region
+- category (enum: Northern Areas, Hill Stations, Valleys, Lakes, Mountains, Beaches, Historical, Cities)
+- tagline, culture
+- famousFood[], famousThings[], famousFor[]
+- suggestedItinerary[]
+- weather { current, forecast } (used for attachment; real-time fetch in controller)
+- createdAt
+
+Hotel
+- (stored in Hotel.js) includes destination ref, coordinates, rating, address, priceRange etc. (see model file for exact fields)
+
+Restaurant
+- (stored in Restaurant.js) includes destination ref, coordinates, rating, address etc.
+
+Budget
+- stores userId, destination, numberOfMembers, days, season, breakdown totals + recommendations/insights; used by MoneyMap + TravelFund
+
+BudgetRule
+- stores rules for calculations and admin-managed rules
+
+ApiKey
+- stores external API keys (managed via Admin Panel)
+
+BuddyBotConversation
+- stores per-user conversation history for BuddyBot
+
+3) Code tree (top-level)
+smart-travel-planner/
+  package.json (root scripts: dev launcher)
+  scripts/
+    dev.js (starts backend + frontend + opens browser)
+    extractDocs.js
+  backend/
+    package.json
+    server.js
+    src/
+      app.js
+      config/
+        database.js
+      middleware/
+        auth.js
+      models/
+        ApiKey.js
+        BuddyBotConversation.js
+        Budget.js
+        BudgetRule.js
+        Destination.js
+        Hotel.js
+        Restaurant.js
+        User.js
+      controllers/
+        adminController.js
+        authController.js
+        buddyBotController.js
+        dashboardController.js
+        moneyMapController.js
+        placesToStayController.js
+        travelFundController.js
+        travelHubController.js
+        travelMapController.js
+      routes/
+        adminRoutes.js
+        authRoutes.js
+        buddyBotRoutes.js
+        dashboardRoutes.js
+        moneyMapRoutes.js
+        placesToStayRoutes.js
+        travelFundRoutes.js
+        travelHubRoutes.js
+        travelMapRoutes.js
+      scripts/
+        fetchHotelsFromGoogle.js
+        seedApiKeys.js
+        addSampleDestinations.js
+        addNorthernPakistanDestinations.js
+        addSampleHotelsRestaurants.js
+  frontend/
+    package.json
+    src/
+      App.js
+      index.js
+      context/
+        AuthContext.js
+        ThemeContext.js
+      components/
+        PrivateRoute.js
+        ThemeToggle.js
+      pages/
+        (Login/Register/Dashboard/TravelHub/PlacesToStay/MoneyMap/TravelFund/BucketList/TravelHistory/TravelMap/BuddyBot/Weather/AdminPanel)
+  scopes/
+    (these 5 files)
+
+4) Notes for Gemini
+- This file is intended to give Gemini both the data layer and the physical project structure.
+- For exact schema fields for Hotel/Restaurant/Budget/BudgetRule/ApiKey/BuddyBotConversation, open their model files.

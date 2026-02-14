@@ -1,0 +1,112 @@
+Current Implementation Status (evidence-based)
+
+Legend
+- Implemented: feature exists end-to-end (UI + API + model where needed)
+- Partial: exists but with gaps (missing endpoints, placeholder logic, env setup required, etc.)
+- Missing: not found in codebase or only referenced in docs
+
+A) Implemented (seen in code)
+1) Auth (basic)
+- Backend:
+  - POST /api/auth/register
+  - POST /api/auth/login
+  - GET /api/auth/profile (JWT protected)
+- Frontend pages:
+  - src/pages/Login.js
+  - src/pages/Register.js
+  - AuthContext sets Authorization header and fetches profile.
+
+2) Protected routing
+- Frontend:
+  - PrivateRoute component used for all module pages.
+  - Admin-only route /admin.
+- Backend:
+  - auth middleware verifies JWT and loads user.
+  - adminAuth checks req.user.role === 'admin'.
+
+3) Travel Hub (Destinations)
+- Backend routes (JWT protected):
+  - GET /api/travel-hub
+  - GET /api/travel-hub/category/:category
+  - GET /api/travel-hub/:id
+  - POST /api/travel-hub
+  - GET /api/travel-hub/weather
+  - GET /api/travel-hub/places-to-visit
+- Uses Destination model and OpenWeatherMap.
+
+4) Places to Stay (Hotels/Restaurants)
+- Backend routes (JWT protected):
+  - GET /api/places-to-stay/hotels
+  - GET /api/places-to-stay/restaurants
+  - GET /api/places-to-stay/hotels/:id
+  - GET /api/places-to-stay/restaurants/:id
+- Uses Hotel and Restaurant models.
+
+5) Money Map (Budget)
+- Backend routes (JWT protected):
+  - POST /api/money-map/calculate
+  - POST /api/money-map/save
+- Uses Budget + BudgetRule + Destination/Hotel/Restaurant
+- Has AI budget estimate logic (Gemini) and real-time pricing logic (Google APIs) when keys exist.
+
+6) Travel Fund
+- Backend routes (JWT protected):
+  - GET /api/travel-fund
+  - POST /api/travel-fund
+  - GET /api/travel-fund/:id
+  - PUT /api/travel-fund/:id
+  - DELETE /api/travel-fund/:id
+  - GET /api/travel-fund/bucket-list
+- Frontend pages:
+  - TravelFund.js, BucketList.js, TravelHistory.js
+
+7) Travel Map
+- Backend routes (JWT protected):
+  - GET /api/travel-map/data
+  - GET /api/travel-map/route
+  - GET /api/travel-map/geocode
+- Uses Destination/Hotel/Restaurant data and optional GOOGLE_MAPS_API_KEY.
+
+8) Buddy Bot
+- Backend routes (JWT protected):
+  - POST /api/buddy-bot/message
+  - GET /api/buddy-bot/conversation
+  - DELETE /api/buddy-bot/conversation
+- Uses Gemini API if AI_API_KEY exists; otherwise falls back to non-AI flow.
+
+9) Admin Panel (large feature)
+- Backend admin routes under /api/admin (adminAuth protected):
+  - Users management, CRUD for destinations/hotels/restaurants
+  - Budget rules CRUD
+  - Analytics
+  - Fetch hotels from Google / auto-fetch
+  - API keys CRUD (stores in ApiKey collection)
+- Frontend:
+  - src/pages/AdminPanel.js (+ CSS)
+
+10) Health check
+- GET /api/health
+
+B) Partial / needs configuration
+1) External APIs depend on environment variables
+- WEATHER_API_KEY, GOOGLE_MAPS_API_KEY, AI_API_KEY
+- Without keys, some pages/APIs will return 503/500 or fallback output.
+
+2) MongoDB local connection reliability
+- Backend now normalizes mongodb://localhost -> mongodb://127.0.0.1 to avoid IPv6 issues on Windows.
+- Backend retries connection instead of crashing.
+
+3) API base URL is hardcoded in frontend AuthContext
+- AuthContext calls http://localhost:5000/api/auth/profile
+- If backend runs on a different host/port, this needs change.
+
+C) Missing / not confirmed in code (may exist in docs only)
+- Password reset / forgot password flow
+- Email verification
+- Full profile update page (only GET /profile exists)
+- Payments or any financial gateway
+- Full production deployment config
+
+D) Notes for Gemini
+- This project is functional for local development with proper MongoDB + API keys.
+- Most modules are implemented with real API routes and React pages.

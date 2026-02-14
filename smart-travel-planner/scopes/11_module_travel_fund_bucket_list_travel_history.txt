@@ -1,0 +1,79 @@
+MODULE 11 — Travel Fund + Bucket List + Travel History (Budgets/Trips CRUD)
+
+1) Module goal
+- Persist trip budgets and plans.
+- Provide:
+  - Travel Fund: list of saved budgets (non-bucket-list)
+  - Bucket List: destinations wishlist (bucket-list budgets)
+  - Travel History (Diary): manage trips with dates/status/notes/rating, export/share
+
+2) Frontend implementation
+A) Travel Fund page
+- File: frontend/src/pages/TravelFund.js
+- On mount: GET /travel-fund
+- Filters out isBucketList items
+- Delete: DELETE /travel-fund/:id
+
+B) Bucket List page
+- File: frontend/src/pages/BucketList.js
+- Destinations tab:
+  - GET /travel-fund/bucket-list
+  - For each item tries to fetch destination details via:
+    - GET /travel-hub/destinations?search=...
+    - NOTE: this endpoint does NOT exist; Travel Hub endpoint is /travel-hub with query search.
+  - Fallbacks to placeholder description/tags.
+- Accommodations tab:
+  - fetches all hotels (not actually “saved”) and slices first 10
+  - delete tries: DELETE /places-to-stay/saved/:id (NOT implemented)
+- Trip plans tab:
+  - GET /travel-fund and filters !isBucketList
+
+C) Travel History (Travel Diary)
+- File: frontend/src/pages/TravelHistory.js
+- On mount: GET /travel-fund
+- Filters out bucket list items
+- Supports:
+  - Update trip: PUT /travel-fund/:id (edit status/dates/accommodation/rating/notes)
+  - Delete trip: DELETE /travel-fund/:id
+  - Share (navigator.share) / Copy to clipboard
+  - Add to calendar (opens Google Calendar URL)
+  - Export CSV
+
+3) Backend implementation
+Routes (auth protected)
+- File: backend/src/routes/travelFundRoutes.js
+  - GET /api/travel-fund
+  - GET /api/travel-fund/bucket-list
+  - POST /api/travel-fund
+  - GET /api/travel-fund/:id
+  - PUT /api/travel-fund/:id
+  - DELETE /api/travel-fund/:id
+
+Controller
+- File: backend/src/controllers/travelFundController.js
+- Storage model: Budget
+- Bucket list uniqueness:
+  - if isBucketList=true, prevents duplicate destination for same user
+
+4) Database usage
+- Model: backend/src/models/Budget.js
+Important fields used
+- destination, numberOfMembers, days, season
+- breakdown + total
+- isBucketList
+- status (planned/confirmed/completed/cancelled)
+- startDate/endDate/accommodation/rating/notes
+
+5) Known gaps / issues
+- BucketList fetches destination details from a non-existing endpoint:
+  - /travel-hub/destinations?search=... should be /travel-hub?search=...
+- Saved accommodations feature is not implemented in backend, but UI attempts deletion.
+
+6) How to test
+- Login
+- Save a budget from MoneyMap
+- Verify:
+  - /travel-fund shows it
+  - /travel-history lists it and allows update
+- Add bucket list item from TravelHub
+- Verify /bucket-list destinations tab shows it

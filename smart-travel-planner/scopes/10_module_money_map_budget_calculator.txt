@@ -1,0 +1,87 @@
+MODULE 10 — Money Map (Budget Calculator)
+
+1) Module goal
+- Provide trip budget calculation with 2 modes:
+  - Smart Auto-Calculate (Hybrid: Google Places -> Gemini grounded estimate)
+  - Manual entry
+- Allow saving a calculated budget into Travel Fund.
+
+2) Frontend implementation
+- File: frontend/src/pages/MoneyMap.js
+Key flows
+A) Load destinations
+- GET /travel-hub
+
+B) Calculate
+- Manual mode:
+  - no backend call
+  - computes total from manual inputs
+- Smart Auto-Calculate mode:
+  - POST /money-map/calculate
+  - Payload:
+    - destination
+    - numberOfMembers
+    - days
+    - season
+  - Receives:
+    - breakdown + insights
+    - usedGoogleData (boolean)
+    - googlePlaces: { hotels: [..], restaurants: [..] } (best-effort)
+    - calculationMethod: "Hybrid-Smart"
+  - UI shows loading: "Scanning local hotels & crunching numbers..."
+  - UI shows badge when usedGoogleData=true: "Based on real market data for <Destination>"
+  - Pre-fills manual inputs with returned breakdown.
+
+C) Save
+- POST /money-map/save
+  - Payload includes breakdown + total + isManual + calculationMethod
+- On success navigates to /travel-fund
+
+3) Backend implementation
+Routes (auth protected)
+- File: backend/src/routes/moneyMapRoutes.js
+  - POST /api/money-map/calculate
+  - POST /api/money-map/save
+
+Controller
+- File: backend/src/controllers/moneyMapController.js
+Budget calculation layers
+- Smart Auto-Calculate (Hybrid)
+  - Phase A: Google Places (best-effort)
+    - Requires GOOGLE_MAPS_API_KEY
+    - Text Search for destination
+    - Selects top 3 rated hotels + top 3 rated restaurants (name + price_level where available)
+  - Phase B: Gemini grounded estimate
+    - Requires AI_API_KEY
+    - Prompt includes the actual place names/types found in Phase A
+    - Expects JSON-only response with keys:
+      - accommodation, food, transport, activities, total, insights
+  - Phase C: Robust fallback
+    - If Google fails: Gemini generic estimate (no place names)
+    - If Gemini fails: rule-based calculation via BudgetRule/defaultBaseCosts
+
+4) Database usage
+- Models:
+  - Budget (saved budgets)
+  - BudgetRule (admin-configurable calculation rules)
+  - Destination (for coordinates used by real-time pricing)
+
+5) External APIs
+- Google Maps Places API (GOOGLE_MAPS_API_KEY)
+- Gemini AI (AI_API_KEY)
+
+6) Known gaps / issues
+- Budget model season enum is: spring/summer/autumn/winter
+  - Frontend sends travelSeason like: peak/off-peak/shoulder in UI, but request payload uses formData.travelSeason.
+  - This can cause validation mismatch if the backend expects only the 4 seasons.
+
+7) Notes
+- Budget model now has calculationMethod to track "Manual" vs "Hybrid-Smart".
+
+7) How to test
+- Login
+- Open /money-map
+- Try:
+  - AI mode with AI_API_KEY
+  - Real-time mode with GOOGLE_MAPS_API_KEY
+  - Save budget and confirm it appears in /travel-fund

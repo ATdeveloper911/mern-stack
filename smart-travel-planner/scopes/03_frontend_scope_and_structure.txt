@@ -1,0 +1,70 @@
+Frontend Scope & Structure (React)
+
+1) Tech
+- React 18 (CRA via react-scripts 5.0.1)
+- Routing: react-router-dom v6
+- HTTP: axios
+- Maps:
+  - Leaflet + react-leaflet
+  - @react-google-maps/api
+
+2) Entry points
+- src/index.js
+- src/App.js: defines routes and protection
+
+3) Routing (src/App.js)
+Public
+- /login -> Login
+- /register -> Register
+
+Protected (requires JWT via PrivateRoute)
+- /dashboard -> Dashboard
+- /travel-hub -> TravelHub
+- /places-to-stay -> PlacesToStay
+- /money-map -> MoneyMap
+- /travel-fund -> TravelFund
+- /bucket-list -> BucketList
+- /travel-history -> TravelHistory
+- /travel-map -> TravelMap
+- /buddy-bot -> BuddyBot
+- /weather -> Weather
+- /admin -> AdminPanel (adminOnly)
+
+4) Auth state management
+- src/context/AuthContext.js
+  - Stores token in localStorage
+  - Sets axios default Authorization header
+  - Loads user via GET http://localhost:5000/api/auth/profile
+
+5) Theme
+- ThemeContext + ThemeToggle used globally
+
+6) Main pages (src/pages)
+- Login.js, Register.js
+- Dashboard.js
+- TravelHub.js
+- PlacesToStay.js
+- MoneyMap.js
+- TravelFund.js
+- BucketList.js
+- TravelHistory.js
+- TravelMap.js
+- BuddyBot.js
+- Weather.js
+- AdminPanel.js (large admin UI)
+
+7) Expected backend endpoints used by frontend
+- Auth: /api/auth/*
+- Dashboard: /api/dashboard/*
+- Travel Hub: /api/travel-hub/*
+- Places to Stay: /api/places-to-stay/*
+- Money Map: /api/money-map/*
+- Travel Fund: /api/travel-fund/*
+- Travel Map: /api/travel-map/*
+- Buddy Bot: /api/buddy-bot/*
+- Admin: /api/admin/*
+
+8) Known coupling / assumptions
+- Backend URL is currently hardcoded for profile fetch.
+- JWT auth assumes backend uses Bearer token header.
+- Some modules require external API keys configured on backend.

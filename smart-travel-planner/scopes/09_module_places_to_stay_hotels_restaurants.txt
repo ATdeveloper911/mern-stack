@@ -1,0 +1,51 @@
+MODULE 09 — Places To Stay (Hotels + Restaurants)
+
+1) Module goal
+- Let authenticated users browse hotels and restaurants.
+- Provide detail views (images, rating, price range, contact, booking link).
+
+2) Frontend implementation
+- File: frontend/src/pages/PlacesToStay.js
+Core flows
+- On mount:
+  - GET /places-to-stay/hotels
+  - GET /places-to-stay/restaurants
+- Local UI state:
+  - selectedHotel or selectedRestaurant triggers a detail view.
+- The file expects object fields like:
+  - images[], rating, address, description
+  - hotel: priceRange {min,max,currency}, amenities, contactNumber, email, bookingLink
+  - restaurant: cuisine[], priceRange, contactNumber, bookingLink
+
+3) Backend implementation
+Routes (auth protected)
+- File: backend/src/routes/placesToStayRoutes.js
+  - GET /api/places-to-stay/hotels
+  - GET /api/places-to-stay/restaurants
+  - GET /api/places-to-stay/hotels/:id
+  - GET /api/places-to-stay/restaurants/:id
+
+Controller
+- File: backend/src/controllers/placesToStayController.js
+- Supports query params:
+  - destination=<destinationId>
+  - minRating
+  - sortBy (hotels: rating, price-low, price-high)
+
+4) Database usage
+- Models:
+  - backend/src/models/Hotel.js
+  - backend/src/models/Restaurant.js
+- Both reference Destination via ObjectId in field: destination
+
+5) Known gaps / issues
+- BucketList page calls DELETE /places-to-stay/saved/:id, but this route does not exist.
+  - So “saved accommodations delete” is currently not implemented.
+
+6) How to test
+- Login
+- Open /places-to-stay
+- Verify lists load
+- Open a hotel/restaurant detail view
+- Try backend filters:
+  - /api/places-to-stay/hotels?minRating=4&sortBy=rating

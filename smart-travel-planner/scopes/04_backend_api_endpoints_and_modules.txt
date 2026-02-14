@@ -1,0 +1,123 @@
+Backend Scope: API Endpoints & Modules (Express + Mongoose)
+
+1) Backend entry
+- backend/server.js
+  - Starts Express on PORT (default 5000)
+  - Connects to MongoDB with retry; normalizes localhost -> 127.0.0.1
+- backend/src/app.js
+  - Express app config + routes
+  - Adds /api middleware to return 503 until DB is connected (except /api/health)
+
+2) Middleware
+- backend/src/middleware/auth.js
+  - auth: verifies JWT, loads user, checks user.isActive
+  - adminAuth: requires role === 'admin'
+
+3) Routes (mounted in backend/src/app.js)
+Auth: /api/auth
+- POST /register
+- POST /login
+- GET /profile (auth)
+
+Dashboard: /api/dashboard (auth)
+- GET /popular-destinations
+- GET /search
+
+Travel Hub: /api/travel-hub (auth)
+- GET /
+  - filters: search, popular, seasonal, category
+  - country filter: Pakistan
+- GET /category/:category
+- GET /weather
+  - uses OpenWeatherMap + optional geocoding
+- GET /places-to-visit
+- GET /:id
+  - attaches real-time weather if coordinates exist
+- POST /
+
+Places To Stay: /api/places-to-stay (auth)
+- GET /hotels
+  - query: destination, minRating, sortBy
+- GET /restaurants
+  - query: destination, minRating, sortBy
+- GET /hotels/:id
+- GET /restaurants/:id
+
+Money Map: /api/money-map (auth)
+- POST /calculate
+  - uses BudgetRule and can call:
+    - Gemini for AI estimate (AI_API_KEY)
+    - Google APIs for real-time pricing (GOOGLE_MAPS_API_KEY)
+- POST /save
+
+Travel Fund: /api/travel-fund (auth)
+- GET /
+- GET /bucket-list
+- POST /
+- GET /:id
+- PUT /:id
+- DELETE /:id
+
+Travel Map: /api/travel-map (auth)
+- GET /data
+  - returns destinations/hotels/restaurants + mapsApiKey
+- GET /route
+  - Google Directions API if GOOGLE_MAPS_API_KEY else fallback response
+- GET /geocode
+  - Google Geocoding API if GOOGLE_MAPS_API_KEY else 503
+
+Buddy Bot: /api/buddy-bot (auth)
+- POST /message
+- GET /conversation
+- DELETE /conversation
+  - Gemini generateContent API if AI_API_KEY configured, with model probing logic
+
+Admin: /api/admin (adminAuth)
+- Users
+  - GET /users
+  - PATCH /users/:id/toggle
+- Destinations CRUD
+  - GET /destinations
+  - GET /destinations/:id
+  - POST /destinations
+  - PUT /destinations/:id
+  - DELETE /destinations/:id
+- Hotels CRUD
+  - GET /hotels
+  - GET /hotels/:id
+  - POST /hotels
+  - PUT /hotels/:id
+  - DELETE /hotels/:id
+- Restaurants CRUD
+  - GET /restaurants
+  - GET /restaurants/:id
+  - POST /restaurants
+  - PUT /restaurants/:id
+  - DELETE /restaurants/:id
+- Budget Rules CRUD
+  - GET /budget-rules
+  - POST /budget-rules
+  - PUT /budget-rules/:id
+  - DELETE /budget-rules/:id
+- Analytics
+  - GET /analytics
+- Data fetch helpers
+  - POST /fetch-hotels-from-google
+  - POST /auto-fetch-locations-hotels
+- API keys CRUD
+  - GET /api-keys
+  - GET /api-keys/:id
+  - POST /api-keys
+  - PUT /api-keys/:id
+  - DELETE /api-keys/:id
+
+4) Key environment variables used
+- MONGODB_URI
+- JWT_SECRET
+- WEATHER_API_KEY
+- GOOGLE_MAPS_API_KEY
+- AI_API_KEY
+
+5) Notes
+- Most endpoints require auth; admin endpoints require adminAuth.
+- External API integrations are optional but recommended for full functionality.

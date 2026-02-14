@@ -1,0 +1,64 @@
+Smart Travel Planner / Smart Travel Buddy (MERN)
+
+1) What this project is
+- A MERN-stack travel planning web app focused on Pakistan destinations.
+- Provides modules: Authentication, Dashboard, Travel Hub (destinations + weather + places), Places to Stay (hotels/restaurants), Money Map (budget calculator + saving budgets), Travel Fund (budgets + bucket list), Travel Map (map + directions + geocoding), Buddy Bot (Gemini AI travel assistant), Admin Panel (CRUD + analytics + API keys + auto-fetch scripts).
+
+2) Runtime workflow (developer)
+- Root command: npm run dev
+  - Runs scripts/dev.js which starts:
+    - Backend: backend/nodemon server.js  (default port 5000)
+    - Frontend: frontend/react-scripts start (default port 3000)
+  - Opens browser (best-effort) to http://localhost:3000
+
+3) Technology stack
+- Frontend
+  - React 18 + react-router-dom
+  - axios for API calls
+  - Mapping: Leaflet + react-leaflet, and @react-google-maps/api
+  - Auth: JWT stored in localStorage, sent as Authorization: Bearer <token>
+- Backend
+  - Node.js + Express
+  - MongoDB via Mongoose
+  - JWT auth middleware, role-based admin access
+  - axios for calling external APIs
+- Database
+  - MongoDB (local via Compass or Atlas)
+  - Models: User, Destination, Hotel, Restaurant, Budget, BudgetRule, ApiKey, BuddyBotConversation
+
+4) External APIs / integrations (currently in code)
+- OpenWeatherMap
+  - Current weather + 5-day forecast + geocoding
+  - env: WEATHER_API_KEY
+- Google Maps Platform
+  - Directions API + Geocoding API in travelMapController
+  - Places/Maps pricing lookups in moneyMapController (real-time pricing)
+  - env: GOOGLE_MAPS_API_KEY
+- Google Gemini (Generative Language API)
+  - BuddyBot chat responses
+  - MoneyMap AI budget estimates
+  - env: AI_API_KEY
+
+5) Environments / ports (defaults)
+- Frontend: http://localhost:3000
+- Backend: http://localhost:5000
+- MongoDB default (local): mongodb://127.0.0.1:27017/smart-travel-planner
+
+6) Authentication & roles
+- JWT signed with JWT_SECRET (fallback hardcoded default exists in code; should be set in env)
+- User roles: user | admin
+- Admin routes are protected via adminAuth middleware.
+
+7) High-level module list (UI routes)
+- /login, /register
+- /dashboard
+- /travel-hub
+- /places-to-stay
+- /money-map
+- /travel-fund
+- /bucket-list
+- /travel-history
+- /travel-map
+- /buddy-bot
+- /weather
+- /admin (admin-only)

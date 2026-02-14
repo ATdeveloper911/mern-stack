@@ -1,0 +1,16 @@
+{
+  "name": "smart-travel-planner",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "node scripts/dev.js",
+    "start": "npm run dev",
+    "install:all": "npm install --prefix backend && npm install --prefix frontend",
+    "extract-docs": "node scripts/extractDocs.js"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "mammoth": "^1.6.0",
+    "pdf-parse": "^1.1.1"
+  }
+}

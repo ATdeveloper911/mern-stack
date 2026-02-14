@@ -1,0 +1,37 @@
+MODULE 14 — Weather (Real-Time Weather + Forecast)
+
+1) Module goal
+- Provide real-time weather and forecast for selected destination.
+- Provide travel tips based on temperature/conditions.
+
+2) Frontend implementation
+- File: frontend/src/pages/Weather.js
+Key flows
+- On mount:
+  - GET /travel-hub
+  - Selects the first destination and auto-fetches weather
+- Fetch weather:
+  - GET /travel-hub/weather?destination=<name>
+- Provides travel tips rules in UI based on temperature and condition (rain/cold/etc.)
+
+3) Backend implementation
+- Implemented inside Travel Hub controller:
+  - GET /api/travel-hub/weather
+- Requires WEATHER_API_KEY.
+- Uses OpenWeatherMap geocoding + current weather + 5-day forecast.
+
+4) Database usage
+- Reads destinations from Destination collection (names/cities/country/coordinates).
+
+5) External APIs
+- OpenWeatherMap (WEATHER_API_KEY)
+
+6) Known gaps / issues
+- If Destination collection is empty, the Weather page shows alerts and cannot function.
+- If WEATHER_API_KEY is missing, backend returns an error message.
+
+7) How to test
+- Ensure destinations exist in DB
+- Set WEATHER_API_KEY
+- Login
+- Open /weather and verify data loads

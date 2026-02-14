@@ -1,0 +1,166 @@
+MODULE 06 — Authentication & Authorization (End-to-End)
+
+1) Module goal
+- Provide secure login/registration, maintain user session in the frontend, protect pages and API routes, and support admin-only access.
+
+2) Frontend implementation
+2.1 UI pages
+- File: frontend/src/pages/Login.js
+  - Fields: email, password, role (user/admin) + “remember me” checkbox (currently UI-only)
+  - Calls: api.post('/auth/login', formData)
+  - On success:
+    - calls AuthContext.login(user, token)
+    - navigates to /admin if role === 'admin' else /dashboard
+  - Note: Login page includes link to /forgot-password but that route/page is NOT defined in App.js.
+
+- File: frontend/src/pages/Register.js
+  - Fields: name, email, contactNumber, password, confirmPassword, role
+  - Client-side validation:
+    - password === confirmPassword
+    - password length >= 6
+  - Calls: api.post('/auth/register', registerData)
+  - On success:
+    - calls AuthContext.login(user, token)
+    - navigates to /admin if role === 'admin' else /dashboard
+
+2.2 Auth state + session handling
+- File: frontend/src/context/AuthContext.js
+  - Stores JWT token in localStorage under key: token
+  - On app load:
+    - reads token from localStorage
+    - sets axios default header: Authorization: Bearer <token>
+    - fetches current user profile via:
+      - GET http://localhost:5000/api/auth/profile
+  - If profile fetch fails:
+    - removes token
+    - clears axios Authorization header
+  - Exposes:
+    - user
+    - loading
+    - login(userData, authToken)
+    - logout()
+
+Important coupling:
+- AuthContext uses a hardcoded backend URL for profile fetch:
+  - http://localhost:5000/api/auth/profile
+  If you later deploy or change port, this needs to be configurable (env or axios baseURL).
+
+2.3 Route protection
+- File: frontend/src/components/PrivateRoute.js
+  - If loading: shows “Loading...”
+  - If not logged in: redirects to /login
+  - If adminOnly=true and user.role !== 'admin': redirects to /dashboard
+
+- File: frontend/src/App.js
+  - Public routes:
+    - /login
+    - /register
+  - Protected routes via PrivateRoute:
+    - /dashboard, /travel-hub, /places-to-stay, /money-map, /travel-fund, /bucket-list, /travel-history, /travel-map, /buddy-bot, /weather
+  - Admin-only:
+    - /admin
+
+3) Backend implementation
+3.1 API endpoints
+- File: backend/src/routes/authRoutes.js
+  - POST /api/auth/register
+  - POST /api/auth/login
+  - GET /api/auth/profile (protected by auth middleware)
+
+3.2 Controllers
+- File: backend/src/controllers/authController.js
+
+POST /api/auth/register
+- Request body:
+  - name
+  - email
+  - contactNumber
+  - password
+  - role (optional; defaults to 'user')
+- Behavior:
+  - checks if user exists by email
+  - creates new User document
+  - password hashing happens via User model pre('save') hook
+  - returns JWT token (expiresIn: 7d) + user fields
+- Response (success 201):
+  - message
+  - token
+  - user: { id, name, email, role }
+
+POST /api/auth/login
+- Request body:
+  - email
+  - password
+- Behavior:
+  - finds user by email
+  - compares password via user.comparePassword
+  - rejects if user.isActive === false
+  - returns JWT token + user fields
+- Response (success 200):
+  - message
+  - token
+  - user: { id, name, email, role }
+
+GET /api/auth/profile
+- Requires Authorization: Bearer <token>
+- Middleware loads req.user and this endpoint returns:
+  - the user document (password excluded)
+
+3.3 Auth middleware
+- File: backend/src/middleware/auth.js
+- auth middleware:
+  - reads token from multiple header variants
+  - jwt.verify using JWT_SECRET (fallback default exists)
+  - loads user by decoded.userId and checks user.isActive
+  - sets req.user
+- adminAuth middleware:
+  - runs auth
+  - checks req.user.role === 'admin'
+
+4) Database / models
+- File: backend/src/models/User.js
+- Fields:
+  - name (required)
+  - email (required, unique)
+  - contactNumber (required)
+  - password (required, minLength 6)
+  - role: 'user' | 'admin'
+  - isActive: boolean (default true)
+  - preferences: Map
+  - createdAt
+- Security:
+  - password hashed with bcrypt in pre('save') hook
+  - comparePassword method uses bcrypt.compare
+
+5) Security assumptions & current gaps
+Implemented
+- JWT-based auth
+- Protected API routes via auth middleware
+- Admin-only endpoints via adminAuth
+- Ability to disable user access via user.isActive
+
+Gaps / partial
+- Forgot password flow is not implemented end-to-end:
+  - Frontend has link to /forgot-password
+  - App.js does not define /forgot-password
+  - Backend does not provide forgot/reset endpoints
+- The Login UI includes “role” selection, but backend login ignores role in request.
+  - Actual role comes from DB user.role.
+- JWT_SECRET fallback exists in code; production should set JWT_SECRET in env.
+
+6) How to test this module locally
+1) Register
+- POST http://localhost:5000/api/auth/register
+- Body: { name, email, contactNumber, password, role }
+
+2) Login
+- POST http://localhost:5000/api/auth/login
+- Body: { email, password }
+
+3) Access profile
+- GET http://localhost:5000/api/auth/profile
+- Header: Authorization: Bearer <token>
+
+4) Check admin access
+- Login with an admin user (role=admin in DB)
+- Open frontend /admin, and call /api/admin/* endpoints.

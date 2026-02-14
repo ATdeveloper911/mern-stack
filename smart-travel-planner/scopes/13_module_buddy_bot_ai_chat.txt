@@ -1,0 +1,53 @@
+MODULE 13 — Buddy Bot (AI Travel Assistant)
+
+1) Module goal
+- Provide a chat assistant for travel planning (Pakistan-focused).
+- Store conversation history per user.
+- Use Gemini AI when configured; otherwise provide fallback behavior.
+
+2) Frontend implementation
+- File: frontend/src/pages/BuddyBot.js
+Key flows
+- On mount:
+  - GET /buddy-bot/conversation
+  - If no messages, shows a local welcome message
+- Send message:
+  - POST /buddy-bot/message { message }
+  - Appends user message immediately, then appends assistant response
+- Clear conversation:
+  - (UI may call DELETE /buddy-bot/conversation depending on page code)
+
+3) Backend implementation
+Routes (auth protected)
+- File: backend/src/routes/buddyBotRoutes.js
+  - POST /api/buddy-bot/message
+  - GET /api/buddy-bot/conversation
+  - DELETE /api/buddy-bot/conversation
+
+Controller
+- File: backend/src/controllers/buddyBotController.js
+Key behaviors
+- Uses AI_API_KEY to call Gemini generateContent.
+- Tries multiple model names + endpoints (v1beta/v1) and can list available models.
+- Cleans markdown from AI response.
+- Stores conversation in BuddyBotConversation model.
+
+4) Database usage
+- Model: backend/src/models/BuddyBotConversation.js
+Fields
+- userId
+- messages[] (role, content, timestamp)
+- preferences map
+
+5) External APIs
+- Gemini Generative Language API (AI_API_KEY)
+
+6) Known gaps / issues
+- If AI_API_KEY is invalid/missing, assistant behavior depends on controller fallback logic.
+- Some prompts reference budgets/preferences; quality depends on stored data.
+
+7) How to test
+- Login
+- Open /buddy-bot
+- Send a message
+- Verify it is persisted by reloading the page

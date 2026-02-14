@@ -1,0 +1,312 @@
+:root {
+  --tf-primary: #1a3c34;
+  --tf-accent: #d4a373;
+  --tf-bg-glass: rgba(255, 255, 255, 0.95);
+  --tf-text-dark: #1a3c34;
+  --tf-text-muted: #64748b;
+  --tf-danger: #ef4444;
+}
+
+.travel-fund-page {
+  min-height: 100vh;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+  /* Premium Background */
+  background: url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1920&q=80');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  position: relative;
+  padding: 20px;
+}
+
+.tf-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(7, 15, 13, 0.5); /* Darker overlay for contrast */
+  pointer-events: none;
+}
+
+.tf-shell {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* --- HEADER --- */
+.tf-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 40px;
+  background: var(--tf-bg-glass);
+  backdrop-filter: blur(12px);
+  padding: 16px 30px;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+
+.tf-header-content {
+  text-align: right;
+}
+
+.tf-header h1 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 900;
+  color: var(--tf-primary);
+}
+
+.tf-header p {
+  margin: 4px 0 0;
+  color: var(--tf-text-muted);
+  font-size: 14px;
+}
+
+.tf-back-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: 1px solid rgba(26, 60, 52, 0.1);
+  padding: 10px 20px;
+  border-radius: 99px;
+  font-weight: 700;
+  color: var(--tf-text-dark);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.tf-back-btn:hover {
+  background: var(--tf-primary);
+  color: #fff;
+  border-color: var(--tf-primary);
+}
+
+/* --- STATS BAR --- */
+.tf-stats-bar {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.tf-stat-item {
+  background: linear-gradient(135deg, var(--tf-primary), #245247);
+  padding: 20px;
+  border-radius: 16px;
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.tf-stat-label {
+  display: block;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0.8;
+  margin-bottom: 4px;
+}
+
+.tf-stat-value {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--tf-accent);
+}
+
+/* --- GRID --- */
+.tf-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 24px;
+}
+
+/* CREATE CARD */
+.tf-create-card {
+  background: rgba(255, 255, 255, 0.8);
+  border: 2px dashed rgba(26, 60, 52, 0.2);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 280px;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: var(--tf-text-muted);
+}
+
+.tf-create-card:hover {
+  background: #fff;
+  border-color: var(--tf-accent);
+  color: var(--tf-primary);
+  transform: translateY(-4px);
+}
+
+.tf-create-icon {
+  margin-bottom: 16px;
+  color: var(--tf-accent);
+}
+
+.tf-create-card h3 { margin: 0; font-size: 18px; font-weight: 700; }
+.tf-create-card p { margin: 4px 0 0; font-size: 13px; }
+
+/* BUDGET CARD */
+.tf-card {
+  background: var(--tf-bg-glass);
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  display: flex;
+  flex-direction: column;
+}
+
+.tf-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+.tf-card-header {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.tf-dest-icon {
+  background: rgba(26, 60, 52, 0.05);
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  color: var(--tf-primary);
+}
+
+.tf-dest-info h3 {
+  margin: 0 0 6px;
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--tf-text-dark);
+}
+
+.tf-season-badge {
+  background: rgba(212, 163, 115, 0.15);
+  color: #b08d55;
+  font-weight: 700;
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 99px;
+  text-transform: uppercase;
+}
+
+.tf-card-details {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.tf-detail-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--tf-text-muted);
+}
+
+.tf-icon-muted { color: #94a3b8; }
+
+.tf-divider {
+  height: 1px;
+  background: rgba(0,0,0,0.06);
+  margin-bottom: 20px;
+}
+
+.tf-card-total {
+  margin-bottom: 20px;
+}
+
+.tf-total-label {
+  display: block;
+  font-size: 12px;
+  color: var(--tf-text-muted);
+  margin-bottom: 4px;
+}
+
+.tf-total-amount {
+  display: block;
+  font-size: 24px;
+  font-weight: 900;
+  color: var(--tf-primary);
+  letter-spacing: -0.5px;
+}
+
+.tf-card-actions {
+  margin-top: auto; /* Push to bottom */
+  display: flex;
+  justify-content: flex-end;
+}
+
+.tf-action-btn {
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+
+.tf-action-btn.delete {
+  color: var(--tf-danger);
+  background: rgba(239, 68, 68, 0.08);
+}
+
+.tf-action-btn.delete:hover {
+  background: rgba(239, 68, 68, 0.15);
+}
+
+/* LOADING & EMPTY */
+.tf-loading {
+  text-align: center;
+  padding: 60px;
+  color: #fff;
+}
+
+.tf-spin {
+  animation: spin 1s linear infinite;
+  margin-bottom: 10px;
+}
+
+@keyframes spin { 100% { transform: rotate(360deg); } }
+
+.tf-empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  background: var(--tf-bg-glass);
+  padding: 40px;
+  border-radius: 20px;
+  color: var(--tf-text-muted);
+}
+
+.tf-empty-icon {
+  color: #cbd5e1;
+  margin-bottom: 16px;
+}
+
+@media (max-width: 600px) {
+  .tf-header {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .tf-header-content { text-align: left; }
+  .tf-grid { grid-template-columns: 1fr; }
+}
