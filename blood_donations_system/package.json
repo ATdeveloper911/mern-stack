@@ -1,0 +1,34 @@
+{
+  "name": "bloodlink",
+  "version": "1.0.0",
+  "description": "Online Blood Donation & Request Portal - BloodLink",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently --kill-others --prefix-colors \"bgBlue.bold,bgMagenta.bold\" --names \"BACKEND,FRONTEND\" \"npm run server\" \"npm run client\"",
+    "start": "node start.js",
+    "debug": "node debug-start.js",
+    "health": "node health-check.js",
+    "server": "cd backend && npm run dev",
+    "client": "cd frontend && npm start",
+    "build": "cd frontend && npm run build",
+    "install-all": "npm install && cd backend && npm install && cd ../frontend && npm install",
+    "start:backend": "cd backend && npm start",
+    "heroku-postbuild": "cd backend && npm install && cd ../frontend && npm install && npm run build",
+    "setup": "npm run install-all"
+  },
+  "keywords": [
+    "blood-donation",
+    "healthcare",
+    "mern-stack",
+    "real-time",
+    "medical"
+  ],
+  "author": "M.Awais Mustafa & M.Waqas",
+  "license": "MIT",
+  "dependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

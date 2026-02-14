@@ -1,0 +1,427 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=JetBrains+Mono:wght@100;200;300;400;500;600;700;800&display=swap');
+
+/* Base styles */
+@layer base {
+  * {
+    @apply border-neutral-200;
+  }
+  
+  body {
+    @apply bg-neutral-50 text-neutral-900 font-sans;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    @apply w-2;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-neutral-100;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-neutral-300 rounded-full;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-neutral-400;
+  }
+  
+  /* Selection styles */
+  ::selection {
+    @apply bg-blood-200 text-blood-900;
+  }
+  
+  /* Focus styles */
+  *:focus {
+    @apply outline-none;
+  }
+  
+  *:focus-visible {
+    @apply ring-2 ring-blood-500 ring-offset-2;
+  }
+}
+
+/* Component styles */
+@layer components {
+  /* Button components */
+  .btn {
+    @apply inline-flex items-center justify-center px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  
+  .btn-primary {
+    @apply btn bg-blood-600 text-white hover:bg-blood-700 focus:ring-blood-500 shadow-blood;
+  }
+  
+  .btn-secondary {
+    @apply btn bg-neutral-200 text-neutral-900 hover:bg-neutral-300 focus:ring-neutral-500;
+  }
+  
+  .btn-medical {
+    @apply btn bg-medical-600 text-white hover:bg-medical-700 focus:ring-medical-500 shadow-medical;
+  }
+  
+  .btn-emergency {
+    @apply btn bg-emergency-500 text-white hover:bg-emergency-600 focus:ring-emergency-500 shadow-emergency animate-emergency-flash;
+  }
+  
+  .btn-success {
+    @apply btn bg-success-600 text-white hover:bg-success-700 focus:ring-success-500;
+  }
+  
+  .btn-warning {
+    @apply btn bg-warning-500 text-white hover:bg-warning-600 focus:ring-warning-500;
+  }
+  
+  .btn-error {
+    @apply btn bg-error-600 text-white hover:bg-error-700 focus:ring-error-500;
+  }
+  
+  .btn-outline {
+    @apply btn border-2 border-current bg-transparent hover:bg-current hover:text-white;
+  }
+  
+  .btn-ghost {
+    @apply btn bg-transparent hover:bg-neutral-100 text-neutral-700;
+  }
+  
+  .btn-lg {
+    @apply px-6 py-3 text-base;
+  }
+  
+  .btn-sm {
+    @apply px-3 py-1.5 text-xs;
+  }
+  
+  /* Input components */
+  .input {
+    @apply block w-full px-3 py-2 text-sm border border-neutral-300 rounded-lg bg-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-blood-500 focus:border-transparent transition-colors duration-200;
+  }
+  
+  .input-error {
+    @apply input border-error-300 focus:ring-error-500;
+  }
+  
+  .input-success {
+    @apply input border-success-300 focus:ring-success-500;
+  }
+  
+  /* Card components */
+  .card {
+    @apply bg-white rounded-xl shadow-sm border border-neutral-200 overflow-hidden;
+  }
+  
+  .card-hover {
+    @apply card hover:shadow-lg transition-shadow duration-200;
+  }
+  
+  .card-blood {
+    @apply card border-blood-200 bg-gradient-to-br from-blood-50 to-white;
+  }
+  
+  .card-medical {
+    @apply card border-medical-200 bg-gradient-to-br from-medical-50 to-white;
+  }
+  
+  .card-emergency {
+    @apply card border-emergency-200 bg-gradient-to-br from-emergency-50 to-white;
+  }
+  
+  /* Badge components */
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+  
+  .badge-blood {
+    @apply badge bg-blood-100 text-blood-800;
+  }
+  
+  .badge-medical {
+    @apply badge bg-medical-100 text-medical-800;
+  }
+  
+  .badge-emergency {
+    @apply badge bg-emergency-100 text-emergency-800;
+  }
+  
+  .badge-success {
+    @apply badge bg-success-100 text-success-800;
+  }
+  
+  .badge-warning {
+    @apply badge bg-warning-100 text-warning-800;
+  }
+  
+  .badge-error {
+    @apply badge bg-error-100 text-error-800;
+  }
+  
+  /* Blood type specific badges */
+  .badge-blood-a {
+    @apply badge bg-blood-a-100 text-blood-a-800;
+  }
+  
+  .badge-blood-b {
+    @apply badge bg-blood-b-100 text-blood-b-800;
+  }
+  
+  .badge-blood-ab {
+    @apply badge bg-blood-ab-100 text-blood-ab-800;
+  }
+  
+  .badge-blood-o {
+    @apply badge bg-blood-o-100 text-blood-o-800;
+  }
+  
+  /* Alert components */
+  .alert {
+    @apply p-4 rounded-lg border;
+  }
+  
+  .alert-success {
+    @apply alert bg-success-50 border-success-200 text-success-800;
+  }
+  
+  .alert-warning {
+    @apply alert bg-warning-50 border-warning-200 text-warning-800;
+  }
+  
+  .alert-error {
+    @apply alert bg-error-50 border-error-200 text-error-800;
+  }
+  
+  .alert-info {
+    @apply alert bg-medical-50 border-medical-200 text-medical-800;
+  }
+  
+  /* Loading components */
+  .loading-spinner {
+    @apply animate-spin rounded-full border-2 border-neutral-300 border-t-blood-600;
+  }
+  
+  .loading-dots {
+    @apply flex space-x-1;
+  }
+  
+  .loading-dot {
+    @apply w-2 h-2 bg-blood-600 rounded-full animate-pulse;
+  }
+  
+  /* Glass morphism effect */
+  .glass {
+    @apply bg-white/80 backdrop-blur-sm border border-white/20;
+  }
+  
+  .glass-dark {
+    @apply bg-neutral-900/80 backdrop-blur-sm border border-neutral-700/20;
+  }
+  
+  /* Gradient text */
+  .text-gradient-blood {
+    @apply bg-gradient-to-r from-blood-600 to-blood-800 bg-clip-text text-transparent;
+  }
+  
+  .text-gradient-medical {
+    @apply bg-gradient-to-r from-medical-600 to-medical-800 bg-clip-text text-transparent;
+  }
+  
+  /* Hero section styles */
+  .hero-gradient {
+    @apply bg-gradient-to-br from-blood-600 via-blood-700 to-blood-800;
+  }
+  
+  .hero-pattern {
+    background-image: 
+      radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+  }
+  
+  /* Navigation styles */
+  .nav-link {
+    @apply px-3 py-2 text-sm font-medium text-neutral-700 hover:text-blood-600 hover:bg-blood-50 rounded-lg transition-colors duration-200;
+  }
+  
+  .nav-link-active {
+    @apply nav-link text-blood-600 bg-blood-50;
+  }
+  
+  /* Mobile menu styles */
+  .mobile-menu {
+    @apply fixed inset-0 z-50 bg-white/95 backdrop-blur-sm;
+  }
+  
+  /* Dashboard styles */
+  .dashboard-card {
+    @apply card p-6 hover:shadow-lg transition-all duration-200;
+  }
+  
+  .dashboard-stat {
+    @apply text-3xl font-bold text-neutral-900;
+  }
+  
+  .dashboard-label {
+    @apply text-sm font-medium text-neutral-600;
+  }
+  
+  /* Form styles */
+  .form-group {
+    @apply space-y-2;
+  }
+  
+  .form-label {
+    @apply block text-sm font-medium text-neutral-700;
+  }
+  
+  .form-error {
+    @apply text-sm text-error-600;
+  }
+  
+  .form-help {
+    @apply text-sm text-neutral-500;
+  }
+  
+  /* Table styles */
+  .table {
+    @apply min-w-full divide-y divide-neutral-200;
+  }
+  
+  .table-header {
+    @apply bg-neutral-50;
+  }
+  
+  .table-header-cell {
+    @apply px-6 py-3 text-left text-xs font-medium text-neutral-500 uppercase tracking-wider;
+  }
+  
+  .table-body {
+    @apply bg-white divide-y divide-neutral-200;
+  }
+  
+  .table-row {
+    @apply hover:bg-neutral-50 transition-colors duration-150;
+  }
+  
+  .table-cell {
+    @apply px-6 py-4 whitespace-nowrap text-sm text-neutral-900;
+  }
+  
+  /* Modal styles */
+  .modal-overlay {
+    @apply fixed inset-0 bg-black/50 backdrop-blur-sm z-50;
+  }
+  
+  .modal-content {
+    @apply fixed inset-0 z-50 flex items-center justify-center p-4;
+  }
+  
+  .modal-panel {
+    @apply bg-white rounded-xl shadow-xl max-w-md w-full max-h-[90vh] overflow-y-auto;
+  }
+  
+  /* Toast styles */
+  .toast-success {
+    @apply bg-success-50 border border-success-200 text-success-800;
+  }
+  
+  .toast-error {
+    @apply bg-error-50 border border-error-200 text-error-800;
+  }
+  
+  .toast-warning {
+    @apply bg-warning-50 border border-warning-200 text-warning-800;
+  }
+  
+  .toast-info {
+    @apply bg-medical-50 border border-medical-200 text-medical-800;
+  }
+}
+
+/* Utility classes */
+@layer utilities {
+  .text-shadow {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .text-shadow-lg {
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .backdrop-blur-xs {
+    backdrop-filter: blur(2px);
+  }
+  
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+  
+  .transform-gpu {
+    transform: translateZ(0);
+  }
+  
+  .will-change-transform {
+    will-change: transform;
+  }
+  
+  .will-change-scroll {
+    will-change: scroll-position;
+  }
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  .print-break {
+    page-break-before: always;
+  }
+  
+  .print-break-after {
+    page-break-after: always;
+  }
+}
+
+/* Dark mode support (for future implementation) */
+@media (prefers-color-scheme: dark) {
+  .dark-mode {
+    @apply bg-neutral-900 text-neutral-100;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .high-contrast {
+    @apply border-2 border-black;
+  }
+}

@@ -1,0 +1,6 @@
+<svg width="192" height="192" viewBox="0 0 192 192" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="192" height="192" rx="24" fill="#DC2626"/>
+  <path d="M96 48C96 48 80 64 80 80C80 96 88 104 96 104C104 104 112 96 112 80C112 64 96 48 96 48Z" fill="white"/>
+  <path d="M96 120C96 120 80 136 80 152C80 168 88 176 96 176C104 176 112 168 112 152C112 136 96 120 96 120Z" fill="white"/>
+  <text x="96" y="140" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="24" font-weight="bold">B</text>
+</svg>
