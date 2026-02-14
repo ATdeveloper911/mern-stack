@@ -1,0 +1,11 @@
+name,email,student_id,batch,degree_program,semester
+Aaliyah Khan,aaliyah.khan@example.edu,STU1001,2024,BSE,6
+Omar Farooq,omar.farooq@example.edu,STU1002,2023,BSCS,5
+Priya Sharma,priya.sharma@example.edu,STU1003,2025,BSIT,3
+Lucas Nguyen,lucas.nguyen@example.edu,STU1004,2022,BSE,8
+Fatima Ali,fatima.ali@example.edu,STU1005,2024,BSCS,4
+Miguel Torres,miguel.torres@example.edu,STU1006,2023,BSIT,7
+Sara Ibrahim,sara.ibrahim@example.edu,STU1007,2025,BSE,2
+Daniel Okoye,daniel.okoye@example.edu,STU1008,2022,BSCS,8
+Hana Yamada,hana.yamada@example.edu,STU1009,2024,BSIT,6
+Elena Petrova,elena.petrova@example.edu,STU1010,2023,BSE,5
