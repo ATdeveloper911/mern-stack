@@ -21,8 +21,8 @@ Experience the central hub of your travel planning journey.
 </p>
 
 <p align="center">
-  <img src="https://github.com/YOUR_USERNAME/smart-travel-buddy/blob/main/screenshots/dashboard.png?raw=true" width="45%" alt="User Dashboard"/>
-  <img src="https://github.com/YOUR_USERNAME/smart-travel-buddy/blob/main/screenshots/travel-hub.png?raw=true" width="45%" alt="Travel Hub"/>
+  <img src="https://github.com/user-attachments/assets/e1ea6990-d5e9-4c80-a2a8-538d28fd8da0?raw=true" width="45%" alt="User Dashboard"/>
+  <img src="https://github.com/user-attachments/assets/5186407c-602e-4486-a38e-aa201d12a0e9?raw=true" width="45%" alt="Travel Hub"/>
   <br />
   <em>User Dashboard (left) & Travel Hub (right)</em>
 </p>
@@ -34,21 +34,21 @@ Experience the central hub of your travel planning journey.
 <table>
   <tr>
     <td width="33%" align="center">
-      <img src="https://github.com/YOUR_USERNAME/smart-travel-buddy/blob/main/screenshots/travel-map.png?raw=true" width="100%" alt="Travel Map"/>
+      <img src="https://github.com/user-attachments/assets/b9421bd8-c062-4930-8f02-5237997c011d?raw=true" width="100%" alt="Travel Map"/>
       <br />
       <strong>🗺️ Travel Map</strong>
       <br />
       <sub>Interactive mapping with directions & geocoding</sub>
     </td>
     <td width="33%" align="center">
-      <img src="https://github.com/YOUR_USERNAME/smart-travel-buddy/blob/main/screenshots/chatbot.png?raw=true" width="100%" alt="Chat Bot"/>
+      <img src="https://github.com/user-attachments/assets/6b2a61fa-c854-432f-9330-b147dfa9b35c?raw=true" width="100%" alt="Chat Bot"/>
       <br />
       <strong>🤖 Buddy Bot</strong>
       <br />
       <sub>AI-powered travel assistant (Gemini AI)</sub>
     </td>
     <td width="33%" align="center">
-      <img src="https://github.com/YOUR_USERNAME/smart-travel-buddy/blob/main/screenshots/money-map.png?raw=true" width="100%" alt="Money Map"/>
+      <img src="https://github.com/user-attachments/assets/0aa52176-9f15-4eff-a5dc-21598f0fe6fd?raw=true" width="100%" alt="Money Map"/>
       <br />
       <strong>💰 Money Map</strong>
       <br />
@@ -65,19 +65,19 @@ Experience the central hub of your travel planning journey.
   <table>
     <tr>
       <td align="center">
-        <img src="https://github.com/YOUR_USERNAME/smart-travel-buddy/blob/main/screenshots/signup.png?raw=true" width="100%" alt="Sign Up"/>
+        <img src="https://github.com/user-attachments/assets/383fb81b-7010-4770-ad9c-7cafba251e08?raw=true" width="100%" alt="Sign Up"/>
         <br />
         <strong>📝 Sign Up</strong>
       </td>
       <td align="center">
-        <img src="https://github.com/YOUR_USERNAME/smart-travel-buddy/blob/main/screenshots/login.png?raw=true" width="100%" alt="Login"/>
+        <img src="https://github.com/user-attachments/assets/556b1c71-c40d-4e13-907d-5ea428aad32d?raw=true" width="100%" alt="Login"/>
         <br />
         <strong>🔑 Login</strong>
       </td>
     </tr>
     <tr>
       <td align="center" colspan="2">
-        <img src="https://github.com/YOUR_USERNAME/smart-travel-buddy/blob/main/screenshots/reset-password.png?raw=true" width="100%" alt="Reset Password"/>
+        <img src="https://github.com/user-attachments/assets/fb626143-6633-4532-9211-052132329653?raw=true" width="100%" alt="Reset Password"/>
         <br />
         <strong>🔄 Reset Password</strong>
       </td>
@@ -90,7 +90,7 @@ Experience the central hub of your travel planning journey.
 ### ⚡ **Quick Actions & Utilities**
 
 <div align="center">
-  <img src="https://github.com/YOUR_USERNAME/smart-travel-buddy/blob/main/screenshots/quick-actions.png?raw=true" width="80%" alt="Quick Actions"/>
+  <img src="https://github.com/user-attachments/assets/7992ba24-e4ba-4939-985f-d7e221a7b3fb?raw=true" width="80%" alt="Quick Actions"/>
   <br />
   <em>Quick Actions Menu</em>
 </div>
@@ -100,8 +100,8 @@ Experience the central hub of your travel planning journey.
 ### 🌤️ **Smart Weather Integration**
 
 <p align="center">
-  <img src="https://github.com/YOUR_USERNAME/smart-travel-buddy/blob/main/screenshots/weather-1.png?raw=true" width="45%" alt="Weather View 1"/>
-  <img src="https://github.com/YOUR_USERNAME/smart-travel-buddy/blob/main/screenshots/weather-2.png?raw=true" width="45%" alt="Weather View 2"/>
+  <img src="https://github.com/user-attachments/assets/6199e688-572f-4192-9219-f5cc18a33846?raw=true" width="45%" alt="Weather View 1"/>
+  <img src="https://github.com/user-attachments/assets/d63c062c-eaa6-41c0-b565-428351d47ec3?raw=true" width="45%" alt="Weather View 2"/>
   <br />
   <em>5-day weather forecast for any Pakistani city</em>
 </p>
@@ -111,7 +111,7 @@ Experience the central hub of your travel planning journey.
 ### ⚙️ **Settings & Configuration**
 
 <p align="center">
-  <img src="https://github.com/YOUR_USERNAME/smart-travel-buddy/blob/main/screenshots/settings.png?raw=true" width="80%" alt="Settings"/>
+  <img src="https://github.com/user-attachments/assets/9d2a60fd-14cf-4c0c-a8f7-b496c06ee093?raw=true" width="80%" alt="Settings"/>
   <br />
   <em>User Settings Panel</em>
 </p>
