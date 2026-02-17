@@ -13,11 +13,13 @@
 
 ### **The Travel Hub**
 *Explore destinations across Pakistan with real-time weather and location insights.*
-
+homepage:
 ![Home Page](https://github.com/user-attachments/assets/1826846a-6b6e-4a68-af3e-988dad353ecd)
 
 <div align="center">
+  user dashboard:
   <img src="https://github.com/user-attachments/assets/e1ea6990-d5e9-4c80-a2a8-538d28fd8da0" width="49%" alt="Dashboard"/>
+  travel hub:
   <img src="https://github.com/user-attachments/assets/5186407c-602e-4486-a38e-aa201d12a0e9" width="49%" alt="Location Info"/>
 </div>
 
@@ -25,10 +27,26 @@
 *AI-driven travel advice and precise Google Maps integration.*
 
 <div align="center">
+  travel map:
   <img src="https://github.com/user-attachments/assets/b9421bd8-c062-4930-8f02-5237997c011d" width="32%"/>
+  chat boat:
   <img src="https://github.com/user-attachments/assets/6b2a61fa-c854-432f-9330-b147dfa9b35c" width="32%"/>
+  money map:
   <img src="https://github.com/user-attachments/assets/0aa52176-9f15-4eff-a5dc-21598f0fe6fd" width="32%"/>
 </div>
+
+
+signup:
+  <img width="1600" height="740" alt="image" src="https://github.com/user-attachments/assets/383fb81b-7010-4770-ad9c-7cafba251e08" />
+login:
+<img width="1600" height="749" alt="image" src="https://github.com/user-attachments/assets/556b1c71-c40d-4e13-907d-5ea428aad32d" />
+reset password:
+<img width="1600" height="748" alt="image" src="https://github.com/user-attachments/assets/fb626143-6633-4532-9211-052132329653" />
+quick actions:
+<img width="1600" height="751" alt="image" src="https://github.com/user-attachments/assets/7992ba24-e4ba-4939-985f-d7e221a7b3fb" />
+smart weather :
+<img width="1600" height="746" alt="image" src="https://github.com/user-attachments/assets/6199e688-572f-4192-9219-f5cc18a33846" />
+<img width="1303" height="721" alt="image" src="https://github.com/user-attachments/assets/d63c062c-eaa6-41c0-b565-428351d47ec3" />
 
 ---
 
@@ -66,3 +84,6 @@ The project uses a unified development script to launch both tiers simultaneousl
    ```bash
    git clone [https://github.com/your-username/smart-travel-buddy.git](https://github.com/your-username/smart-travel-buddy.git)
    npm run install-all
+
+
+
