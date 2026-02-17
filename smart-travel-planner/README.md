@@ -15,7 +15,7 @@
 Experience the central hub of your travel planning journey.
 
 <p align="center">
-  <img src="https://github.com/YOUR_USERNAME/smart-travel-buddy/blob/main/screenshots/homepage.png?raw=true" width="80%" alt="Home Page"/>
+  <img src="https://github.com/user-attachments/assets/1826846a-6b6e-4a68-af3e-988dad353ecd?raw=true" width="80%" alt="Home Page"/>
   <br />
   <em>The Travel Hub - Your starting point for exploring Pakistan</em>
 </p>
