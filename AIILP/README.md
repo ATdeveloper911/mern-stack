@@ -26,7 +26,10 @@
 <div align="center">
   <img src="https://github.com/user-attachments/assets/366c088d-617b-4ff0-b1ba-7734e2768352" width="49%" alt="Admin"/>
   <img src="https://github.com/user-attachments/assets/cd1a5367-4ed5-4751-8c3f-49f86c411b33" width="49%" alt="Analytics"/>
+  <img src="https://github.com/user-attachments/assets/ead22273-9f86-4ef3-9987-fc3419e3cc8d" width="49%" alt="Analytics2"/>
+
 </div>
+
 
 ### **Management & Workflow**
 *Role-specific modules for user approval, internship vetting, and activity tracking.*
