@@ -136,4 +136,11 @@ Before BloodLink, blood donation was hindered by manual record-keeping and slow 
 | **Services** | Cloudinary (Files) & Nodemailer (SMTP)  |
 
 ---
+## 📫 Connect with the Architect
+
+* **Portfolio**: [asad-portfolio-pi.vercel.app](https://asad-portfolio-pi.vercel.app/)
+* **Status**: `SYSTEMS_OPERATIONAL` 🟢
+
+---
+
 
