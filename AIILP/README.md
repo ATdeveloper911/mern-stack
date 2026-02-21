@@ -15,26 +15,36 @@ Historically, students and guest applicants have struggled with a fragmented int
 **AIILP** is a high-performance linkage platform that centralizes the entire internship lifecycle. It provides a **single, transparent platform** where both university-enrolled students and guest applicants can build professional CVs, apply to industry-vetted roles, and track their status in real-time.
 
 ---
-
 ## 🖥️ Platform Showcase
 
 ### **The Hub & Entry**
-
 *Secure, role-based access for Students, Universities, Software Houses, and Admins.*
 
 <div align="center">
-<img src="[https://github.com/user-attachments/assets/1cdf3510-8b35-43f7-8105-5cfca3bb11cb](https://github.com/user-attachments/assets/1cdf3510-8b35-43f7-8105-5cfca3bb11cb)" width="32%" alt="Home"/>
-<img src="[https://github.com/user-attachments/assets/0fe0c231-0af8-4b1d-901a-b66ebad0e687](https://github.com/user-attachments/assets/0fe0c231-0af8-4b1d-901a-b66ebad0e687)" width="32%" alt="Signup"/>
-<img src="[https://github.com/user-attachments/assets/7678bada-ce7f-4207-97d6-d1805f2b9dce](https://github.com/user-attachments/assets/7678bada-ce7f-4207-97d6-d1805f2b9dce)" width="32%" alt="Login"/>
+  <img src="https://github.com/user-attachments/assets/1cdf3510-8b35-43f7-8105-5cfca3bb11cb" width="32%" alt="Home"/>
+  <img src="https://github.com/user-attachments/assets/0fe0c231-0af8-4b1d-901a-b66ebad0e687" width="32%" alt="Signup"/>
+  <img src="https://github.com/user-attachments/assets/7678bada-ce7f-4207-97d6-d1805f2b9dce" width="32%" alt="Login"/>
 </div>
 
 ### **Admin & Analytics Command Center**
-
-*Featuring real-time system monitoring, audit logs, and performance metrics.*
+*Extra features: Real-time system monitoring, audit logs, and performance metrics.*
 
 <div align="center">
-<img src="[https://github.com/user-attachments/assets/366c088d-617b-4ff0-b1ba-7734e2768352](https://github.com/user-attachments/assets/366c088d-617b-4ff0-b1ba-7734e2768352)" width="49%" alt="Admin"/>
-<img src="[https://github.com/user-attachments/assets/cd1a5367-4ed5-4751-8c3f-49f86c411b33](https://github.com/user-attachments/assets/cd1a5367-4ed5-4751-8c3f-49f86c411b33)" width="49%" alt="Analytics"/>
+  <img src="https://github.com/user-attachments/assets/366c088d-617b-4ff0-b1ba-7734e2768352" width="49%" alt="Admin"/>
+  <img src="https://github.com/user-attachments/assets/cd1a5367-4ed5-4751-8c3f-49f86c411b33" width="49%" alt="Analytics"/>
+  <img src="https://github.com/user-attachments/assets/ead22273-9f86-4ef3-9987-fc3419e3cc8d" width="49%" alt="Analytics2"/>
+
+</div>
+
+
+### **Management & Workflow**
+*Role-specific modules for user approval, internship vetting, and activity tracking.*
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/da4fcee7-b67e-4a20-b69c-9ea671020d04" width="24%"/>
+  <img src="https://github.com/user-attachments/assets/d5d26b6a-7076-4917-922f-d15ccab14d4d" width="24%"/>
+  <img src="https://github.com/user-attachments/assets/be9cfecc-26f6-496e-a17a-82412d244dbf" width="24%"/>
+  <img src="https://github.com/user-attachments/assets/0d400309-7229-46b9-abf4-30de58ec45bf" width="24%"/>
 </div>
 
 ---
