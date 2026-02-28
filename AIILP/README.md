@@ -134,4 +134,7 @@ src/
 ---
 
 
+[![Flutter](https://img.shields.io/badge/Flutter-3.24+-02569B?style=for-the-badge&logo=flutter&logoColor=white)](https://flutter.dev/) [![Supabase](https://img.shields.io/badge/Supabase-Realtime_&_Auth-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)](https://supabase.com/) [![Isar](https://img.shields.io/badge/Isar-Offline_NoSQL-4051B5?style=for-the-badge)](https://isar.dev/) [![Status](https://img.shields.io/badge/App_Completion-100%25-brightgreen?style=for-the-badge)](https://github.com/)
+
+
 
