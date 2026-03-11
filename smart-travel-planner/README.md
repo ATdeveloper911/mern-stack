@@ -186,12 +186,6 @@ The project uses a unified development script to launch both tiers simultaneousl
 ---
 
 
-## 📝 License
-
-[MIT](https://choosealicense.com/licenses/mit/)
-
----
-
 <p align="center">
   Made with ❤️ for travelers exploring Pakistan
 </p>
